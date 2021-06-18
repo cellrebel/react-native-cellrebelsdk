@@ -38,7 +38,7 @@ import React, { Component } from 'react';
      super(props)
 
      // Initialize CellRebelSDK with CLIENT_KEY
-    CellRebelSDK.init("d7mrw1n1ig");
+    CellRebelSDK.init("d7mrw1n1ig")
 
     this.getSDKversion()
    }
