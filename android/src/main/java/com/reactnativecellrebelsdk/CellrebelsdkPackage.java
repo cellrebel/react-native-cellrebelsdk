@@ -11,12 +11,12 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class CellrebelsdkPackage implements ReactPackage {
+public class CellRebelSDKPackage implements ReactPackage {
     @NonNull
     @Override
     public List<NativeModule> createNativeModules(@NonNull ReactApplicationContext reactContext) {
         List<NativeModule> modules = new ArrayList<>();
-        modules.add(new CellrebelsdkModule(reactContext));
+        modules.add(new CellRebelSDKModule(reactContext));
         return modules;
     }
 

@@ -3,6 +3,9 @@ buildscript {
         repositories {
             google()
             jcenter()
+            maven {
+              url 'https://raw.githubusercontent.com/cellrebel/CellRebelSDK/master/releases'
+            }
         }
 
         dependencies {
@@ -55,4 +58,5 @@ repositories {
 dependencies {
     //noinspection GradleDynamicVersion
     implementation "com.facebook.react:react-native:+"  // From node_modules
+    implementation 'com.cellrebel.android:cellrebel-sdk:1.7.6'
 }

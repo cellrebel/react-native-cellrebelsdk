@@ -1,19 +1,30 @@
 #import "Cellrebelsdk.h"
 
-@implementation Cellrebelsdk
+@implementation CellRebelSDK
 
-RCT_EXPORT_MODULE()
+RCT_EXPORT_MODULE(CellRebelSDK)
 
-// Example method
-// See // https://reactnative.dev/docs/native-modules-ios
-RCT_REMAP_METHOD(multiply,
-                 multiplyWithA:(nonnull NSNumber*)a withB:(nonnull NSNumber*)b
-                 withResolver:(RCTPromiseResolveBlock)resolve
-                 withRejecter:(RCTPromiseRejectBlock)reject)
+RCT_REMAP_METHOD(init,init_clientKey:(nonnull NSString*)clientKey)
 {
-  NSNumber *result = @([a floatValue] * [b floatValue]);
+  
+}
 
-  resolve(result);
+RCT_EXPORT_METHOD(startTracking) {}
+
+RCT_EXPORT_METHOD(stopTracking) {}
+
+RCT_REMAP_METHOD(clearUserData,
+				 withClearUserDataResolver:(RCTPromiseResolveBlock)resolve
+				 withClearUserDataRejecter:(RCTPromiseRejectBlock)reject)
+{
+  resolve([NSNumber numberWithBool:TRUE]);
+}
+
+RCT_REMAP_METHOD(getVersion,
+                 withVersionResolver:(RCTPromiseResolveBlock)resolve
+                 withVersionRejecter:(RCTPromiseRejectBlock)reject)
+{
+	resolve(@"1.7.6");
 }
 
 @end

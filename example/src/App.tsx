@@ -1,31 +1,124 @@
-import * as React from 'react';
+import React, { Component } from 'react';
+ import {
+   Button,
+   SafeAreaView,
+   ScrollView,
+   StatusBar,
+   StyleSheet,
+   Text,
+   useColorScheme,
+   View,
+ } from 'react-native';
 
-import { StyleSheet, View, Text } from 'react-native';
-import Cellrebelsdk from 'react-native-cellrebelsdk';
+ import {
+   Colors,
+   DebugInstructions,
+   Header,
+   LearnMoreLinks,
+   ReloadInstructions,
+ } from 'react-native/Libraries/NewAppScreen';
 
-export default function App() {
-  const [result, setResult] = React.useState<number | undefined>();
+ import CellRebelSDK from 'react-native-cellrebelsdk';
 
-  React.useEffect(() => {
-    Cellrebelsdk.multiply(3, 7).then(setResult);
-  }, []);
+ export default class App extends React.Component {
+  state = {
+    isMeasurementsDisabled: false,
+    cellRebelSDKVersion: ""
+  }
 
-  return (
-    <View style={styles.container}>
-      <Text>Result: {result}</Text>
-    </View>
-  );
-}
+   backgroundStyle = {
+    backgroundColor: Colors.lighter,
+   };
 
-const styles = StyleSheet.create({
+   textStyle = {
+     textAlign: 'center'
+   }
+
+   constructor(props: any) {
+     super(props)
+
+     // Initialize CellRebelSDK with CLIENT_KEY
+    CellRebelSDK.init("d7mrw1n1ig");
+
+    this.getSDKversion()
+   }
+
+  getSDKversion = async () => { 
+    // Use getVersion to retrieve current version of CellRebelSDK from Android module
+    const sdkVersion = await CellRebelSDK.getVersion();
+    this.setState({
+      cellRebelSDKVersion: sdkVersion
+    })
+  }
+
+  clearUserData = async () => {
+    // Call clearUserData to request user removal based on GDPR "right to be forgotten"
+    const result = await CellRebelSDK.clearUserData();
+    this.setState({
+      isMeasurementsDisabled: result
+    })
+  }
+
+  render() {
+    return (
+          <View>
+            <Text style={styles.container}>
+            "CellRebelSDK version: {this.state.cellRebelSDKVersion}"
+          </Text>
+          <View style={styles.buttonContainer}>
+          <Button 
+             title="Start tracking"
+             onPress={() => {
+               console.log("Start tracking pressed")
+               // Call startTracking to begin CellRebelSDK measurements
+               CellRebelSDK.startTracking()
+             }}
+             color="#841584"
+             disabled={this.state.isMeasurementsDisabled}
+            />
+        </View>
+        <View style={styles.buttonContainer}>
+            <Button 
+             title="Stop tracking"
+             onPress={() => {
+               console.log("Stop tracking pressed")
+               CellRebelSDK.stopTracking()
+             }}
+             color="#841584"
+             disabled={this.state.isMeasurementsDisabled}
+            />
+        </View>
+            <View style={styles.buttonContainer}>
+            <Button 
+             title="Clear user data (Remove user and deinit CellRebelSDK)"
+             onPress={() => {
+               console.log("Clear user data pressed")
+               this.clearUserData()
+             }}
+             color="#841584"
+             disabled={this.state.isMeasurementsDisabled}
+            />
+        </View>
+          </View>
+    );
+  }
+
+ };
+
+ const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+    top: 35,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    textAlign: 'center'
   },
-  box: {
-    width: 60,
-    height: 60,
-    marginVertical: 20,
+  buttonContainer: {
+    alignItems: "center",
+    top: 200,
+    marginBottom: 25
   },
+  button: {
+    bottom: 20
+  }
 });

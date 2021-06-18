@@ -10,7 +10,7 @@ import com.facebook.react.ReactInstanceManager;
 import com.facebook.soloader.SoLoader;
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
-import com.reactnativecellrebelsdk.CellrebelsdkPackage;
+import com.reactnativecellrebelsdk.CellRebelSDKPackage;
 
 public class MainApplication extends Application implements ReactApplication {
 
@@ -27,7 +27,6 @@ public class MainApplication extends Application implements ReactApplication {
           List<ReactPackage> packages = new PackageList(this).getPackages();
           // Packages that cannot be autolinked yet can be added manually here, for CellrebelsdkExample:
           // packages.add(new MyReactNativePackage());
-          packages.add(new CellrebelsdkPackage());
           return packages;
         }
 

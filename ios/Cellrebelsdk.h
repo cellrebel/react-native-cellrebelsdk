@@ -1,5 +1,5 @@
 #import <React/RCTBridgeModule.h>
 
-@interface Cellrebelsdk : NSObject <RCTBridgeModule>
+@interface CellRebelSDK : NSObject <RCTBridgeModule>
 
 @end

@@ -1,9 +1,13 @@
 import { NativeModules } from 'react-native';
 
-type CellrebelsdkType = {
-  multiply(a: number, b: number): Promise<number>;
-};
+type CellRebelSDKType = {
+    init(clientKey: string): void;
+    startTracking(): void;
+    stopTracking(): void;
+    getVersion(): Promise<string>;
+    clearUserData(): Promise<boolean>;
+  };
 
-const { Cellrebelsdk } = NativeModules;
+const { CellRebelSDK } = NativeModules;
 
-export default Cellrebelsdk as CellrebelsdkType;
+export default CellRebelSDK as CellRebelSDKType;
