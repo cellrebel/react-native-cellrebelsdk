@@ -1,6 +1,6 @@
 {
   "name": "react-native-cellrebelsdk",
-  "version": "1.7.6",
+  "version": "1.7.0",
   "description": "ReactNative wrapper for CellRebelSDK",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
