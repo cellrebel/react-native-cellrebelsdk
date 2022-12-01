@@ -60,5 +60,5 @@ repositories {
 dependencies {
     //noinspection GradleDynamicVersion
     implementation "com.facebook.react:react-native:0.66.5"  // From node_modules
-    implementation 'com.cellrebel.android:cellrebel-sdk:1.9.12'
+    implementation 'com.cellrebel.android:cellrebel-sdk:1.9.14'
 }
