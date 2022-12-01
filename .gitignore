@@ -64,3 +64,4 @@ android/gradlew.bat
 android/gradle/wrapper/gradle-wrapper.jar
 android/gradle/wrapper/gradle-wrapper.properties
 package-lock.json
+java_pid25043.hprof
