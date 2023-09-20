@@ -5,7 +5,7 @@ buildscript {
             mavenCentral()
             gradlePluginPortal()
             maven {
-              url 'https://raw.githubusercontent.com/cellrebel/CellRebelSDK/master/releases'
+              url 'https://raw.githubusercontent.com/cellrebel/CellRebelSDK/support/releases'
             }
         }
 
@@ -60,5 +60,5 @@ repositories {
 dependencies {
     //noinspection GradleDynamicVersion
     implementation "com.facebook.react:react-native:0.66.5"  // From node_modules
-    implementation 'com.cellrebel.android:cellrebel-sdk:1.9.25'
+    implementation 'com.cellrebel.android:cellrebel-sdk:1.9.29'
 }
