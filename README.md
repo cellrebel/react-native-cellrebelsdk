@@ -10,6 +10,16 @@ To install CellRebelSDK run `npm install` command at the root of your React Nati
 npm install react-native-cellrebelsdk
 ```
 
+On some versions of ReactNative you might encounter `failed to resolve: com.cellrebel.android:cellrebel-sdk error` from Gradle, in this case, please add custom Maven repo to your app module build.gradle:
+
+```groovy
+repositories {
+  maven {
+    url 'https://raw.githubusercontent.com/cellrebel/CellRebelSDK/master/releases'
+  }
+}
+```
+
 ## Usage
 
 In your application entry point import CellRebelSDK module and run `init` method using your unique CLIENT_KEY string:

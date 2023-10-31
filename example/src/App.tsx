@@ -1,9 +1,6 @@
-import React from 'react';
-import { Button, StyleSheet, Text, View } from 'react-native';
-
-import { Colors } from 'react-native/Libraries/NewAppScreen';
-
-import CellRebelSDK from 'react-native-cellrebelsdk';
+import * as React from 'react';
+import { StyleSheet, View, Text, PermissionsAndroid, Button } from 'react-native';
+import CellRebelSDK from "react-native-cellrebelsdk";
 
 export default class App extends React.Component {
   state = {
@@ -11,22 +8,15 @@ export default class App extends React.Component {
     cellRebelSDKVersion: '',
   };
 
-  backgroundStyle = {
-    backgroundColor: Colors.lighter,
-  };
-
-  textStyle = {
-    textAlign: 'center',
-  };
-
-  constructor(props: any) {
+  constructor(props) {
     super(props);
-
+  
     // Initialize CellRebelSDK with CLIENT_KEY
     CellRebelSDK.init('d7mrw1n1ig');
 
     this.getSDKversion();
   }
+  
 
   getSDKversion = async () => {
     // Use getVersion to retrieve current version of CellRebelSDK from Android module
@@ -42,6 +32,31 @@ export default class App extends React.Component {
     this.setState({
       isMeasurementsDisabled: result,
     });
+  };
+
+  requestLocationPermission = async () => {
+    try {
+      const granted = await PermissionsAndroid.request(
+        PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
+        {
+          title: 'Location Permission',
+          message: 'This app needs access to your location to provide location-based services.',
+          buttonNeutral: 'Ask Me Later',
+          buttonNegative: 'Cancel',
+          buttonPositive: 'OK',
+        }
+      );
+
+      if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+        console.log('Location permission granted');
+        // You can now use the location services
+      } else {
+        console.log('Location permission denied');
+        // Handle the case where the user denied the permission
+      }
+    } catch (err) {
+      console.warn(err);
+    }
   };
 
   render() {
@@ -79,6 +94,17 @@ export default class App extends React.Component {
             onPress={() => {
               console.log('Clear user data pressed');
               this.clearUserData();
+            }}
+            color="#841584"
+            disabled={this.state.isMeasurementsDisabled}
+          />
+        </View>
+        <View style={styles.buttonContainer}>
+          <Button
+            title="Request location permission"
+            onPress={() => {
+              console.log('Request location permission pressed');
+              this.requestLocationPermission();
             }}
             color="#841584"
             disabled={this.state.isMeasurementsDisabled}
