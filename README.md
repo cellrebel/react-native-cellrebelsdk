@@ -15,7 +15,7 @@ On some versions of ReactNative you might encounter `failed to resolve: com.cell
 ```groovy
 repositories {
   maven {
-    url 'https://raw.githubusercontent.com/cellrebel/CellRebelSDK/master/releases'
+      url 'https://raw.githubusercontent.com/cellrebel/CellRebelSDK/react-native-support/releases'
   }
 }
 ```
