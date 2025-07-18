@@ -84,6 +84,6 @@ dependencies {
   // For > 0.71, this will be replaced by `com.facebook.react:react-android:$version` by react gradle plugin
   //noinspection GradleDynamicVersion
   implementation "com.facebook.react:react-native:+"
-  implementation 'com.cellrebel.android:cellrebel-sdk:1.9.49'
+  implementation 'com.cellrebel.android:cellrebel-sdk:1.9.56'
 }
 
